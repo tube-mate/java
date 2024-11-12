@@ -1,0 +1,486 @@
+1)BMI
+
+import java.util.Scanner;
+class BMIcalculator {
+    private double weight;
+    private double height;
+    private double bmi;
+    private String grade;
+
+    public BMIcalculator(double weight, double height) {
+        this.weight = weight;
+        this.height = height;
+        this.bmi = calculateBMI();
+        this.grade = calculateGrade();
+    }
+
+    private double calculateBMI() {
+        return weight / (height * height);
+    }
+
+    private String calculateGrade() {
+        if (bmi < 18.5) {
+            return "U";
+        } else if (bmi >= 18.5 && bmi < 25) {
+            return "N";
+        } else if (bmi >= 25 && bmi < 30) {
+            return "H";
+        } else {
+            return "O";
+        }
+    }
+
+    public void displayBMI() {
+        System.out.print(grade);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double weight = scanner.nextDouble();
+        double height = scanner.nextDouble();
+        BMIcalculator bmiCalculator = new BMIcalculator(weight, height);
+        bmiCalculator.displayBMI();
+    }
+} 
+END
+ ----------------------------------------------
+
+2) That demonstrates constructor overloading  with three constructors:
+import java.util.Scanner;
+
+class Overloading {
+    private String name;
+    private String day;
+    private int temp;
+
+    // Default constructor
+    public Overloading() {
+        this.name = "Argentina";
+        this.day = "Yesterday";
+        this.temp = 29;
+    }
+
+    // Parameterized constructor 1
+    public Overloading(String name, int temp) {
+        this.name = name;
+        this.day = "Today";
+        this.temp = temp;
+    }
+
+    // Parameterized constructor 2
+    public Overloading(String name, String day, int temp) {
+        this.name = name;
+        this.day = day;
+        this.temp = temp;
+    }
+
+    public void display() {
+        System.out.println(name + " " + day + " Temperature: " + temp + "\u00B0");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Default constructor call
+        Overloading defaultObj = new Overloading();
+        defaultObj.display();
+
+        // First parameterized constructor
+        String name1 = scanner.next();
+        int temp1 = scanner.nextInt();
+        Overloading paramObj1 = new Overloading(name1, temp1);
+        paramObj1.display();
+
+        // Second parameterized constructor
+        String name2 = scanner.next();
+        String day2 = scanner.next();
+        int temp2 = scanner.nextInt();
+        Overloading paramObj2 = new Overloading(name2, day2, temp2);
+        paramObj2.display();
+
+        scanner.close();
+    }
+}
+END
+--------------------------------------------------------
+3)Checks if a given password is valid based on specific criteria.
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.*;
+
+public class Main {
+       public static void main(String[] args) {
+        //String password;
+        //= "Password@123";
+                Scanner s = new Scanner(System.in);
+        String password = s.next();
+
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        
+        if (matcher.matches()) {
+            System.out.println("Valid password");
+        } else {
+            System.out.println("Invalid password");
+        }
+    }
+}
+END
+------------------------------------------------------
+5)Ramu receiving gifts of different values from his parents.
+
+import java.util.Scanner;
+
+class Gift {
+    protected int amount;
+
+    public Gift(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+}
+
+class Mobile extends Gift {
+    public Mobile(int amount) {
+        super(amount);
+    }
+}
+
+class Laptop extends Gift {
+    public Laptop(int amount) {
+        super(amount);
+    }
+}
+
+class Bike extends Gift {
+    public Bike(int amount) {
+        super(amount);
+    }
+}
+
+public class BirthdayGift {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input for amount given by Ramu's mom for Mobile and Laptop
+        int momGift = scanner.nextInt();
+
+        // Input for amount given by Ramu's dad for Bike
+        int dadGift = scanner.nextInt();
+
+        // Creating objects for Mobile, Laptop, and Bike
+        Mobile mobile = new Mobile(momGift);
+        Laptop laptop = new Laptop(momGift);
+        Bike bike = new Bike(dadGift);
+
+        // Calculating the total amount of gifts
+        int totalAmount = mobile.getAmount() + laptop.getAmount() + bike.getAmount();
+
+        // Displaying the total amount
+        System.out.println("Total amount of gifts: " + totalAmount);
+
+        scanner.close();
+    }
+}
+END
+----------------------------------------
+
+6) that calculates and sorts the perimeters of different shapes
+
+import java.io.*;
+import java.util.*;
+import java.lang.Math;
+abstract class maths {
+    abstract public void rectanglePerimeter();
+    abstract public void squarePerimeter();
+    abstract public void trianglePerimeter();
+    abstract public void trapezoidPerimeter();
+    abstract public void circlePerimeter();
+}
+class perimeter extends maths {
+    public int length;
+    public int breadth;
+    public int side;
+    public int t1;
+    public int t2;
+    public int t3;
+    public int tr1;
+    public int tr2;
+    public int tr3;
+    public int tr4;
+    public int radius;
+    public int [] peri= new int[5];
+    public void rectanglePerimeter() {
+        this.peri[0] = 2*(length+breadth);
+        System.out.println(this.peri[0]);
+    }
+    public void squarePerimeter() {
+        this.peri[1] = 4*side;
+        System.out.println(this.peri[1]);
+    }
+    public void trianglePerimeter() {
+        this.peri[2] = t1+t2+t3;
+        System.out.println(this.peri[2]);
+    }
+    public void trapezoidPerimeter() {
+        this.peri[3] = tr1+tr2+tr3+tr4;
+        System.out.println(this.peri[3]);
+    }
+    public void circlePerimeter() {
+        this.peri[4] = (int) Math.PI*2*radius;
+        System.out.println(this.peri[4]);
+    }
+    public void calculateSum() {
+    int sum = 0,i;
+    for(i=0;i<5;i++) {
+        sum += this.peri[i];
+    }
+    System.out.println(sum);
+    }
+    public void sortPerimeter() {
+        Arrays.sort(this.peri);
+        for(int i=0;i<5;i++) {
+            System.out.print(this.peri[i]+" ");
+        }
+    }
+}
+class Main {
+    public static void main(String [] args) {
+        perimeter p = new perimeter();
+        Scanner sc = new Scanner(System.in);
+        p.length = sc.nextInt();
+        p.breadth = sc.nextInt();
+        p.rectanglePerimeter();
+        p.side = sc.nextInt();
+        p.squarePerimeter();
+        p.t1 = sc.nextInt();
+        p.t2 = sc.nextInt();
+        p.t3 = sc.nextInt();
+        p.trianglePerimeter();
+        p.tr1 = sc.nextInt();
+        p.tr2 = sc.nextInt();
+        p.tr3 = sc.nextInt();
+        p.tr4 = sc.nextInt();
+        p.trapezoidPerimeter();
+        p.radius = sc.nextInt();
+        p.circlePerimeter();
+        p.calculateSum();
+        p.sortPerimeter();
+    }
+} 
+END
+-----------------------------------------------------
+
+7)To create a university registration system that captures and displays the details of an undergraduate student
+
+import java.util.Scanner;
+
+class Person {
+    String name;
+    int age;
+    String gender;
+
+    public Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+}
+
+class Student extends Person {
+    int studentId;
+    String courseEnrollment;
+
+    public Student(String name, int age, String gender, int studentId, String courseEnrollment) {
+        super(name, age, gender);
+        this.studentId = studentId;
+        this.courseEnrollment = courseEnrollment;
+    }
+}
+
+class UndergraduateStudent extends Student {
+    String major;
+    int yearOfStudy;
+
+    public UndergraduateStudent(String name, int age, String gender, int studentId, String courseEnrollment, String major, int yearOfStudy) {
+        super(name, age, gender, studentId, courseEnrollment);
+        this.major = major;
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Gender: " + gender);
+        System.out.println("Student ID: " + studentId);
+        System.out.println("Course Enrollment: " + courseEnrollment);
+        System.out.println("Major: " + major);
+        System.out.println("Year of Study: " + yearOfStudy);
+    }
+}
+
+public class UniversityRegistrationSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input
+        String name = scanner.nextLine();
+        int age = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+        String gender = scanner.nextLine();
+        int studentId = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+        String courseEnrollment = scanner.nextLine();
+        String major = scanner.nextLine();
+        int yearOfStudy = scanner.nextInt();
+
+        // Create an UndergraduateStudent object
+        UndergraduateStudent student = new UndergraduateStudent(name, age, gender, studentId, courseEnrollment, major, yearOfStudy);
+
+        // Display the details
+        student.displayDetails();
+
+        scanner.close();
+    }
+}
+END
+-----------------------------------------
+8)that reads a sequence of integers and stores them in a list only if they form a strictly increasing sequence. 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class IncreasingSequence {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number of elements
+        int N = scanner.nextInt();
+        List<Integer> list = new ArrayList<>();
+
+        // Add elements to the list only if they form an increasing sequence
+        for (int i = 0; i < N; i++) {
+            int num = scanner.nextInt();
+            if (list.isEmpty() || num > list.get(list.size() - 1)) {
+                list.add(num);
+            }
+        }
+
+        // Output the list
+        System.out.println(list);
+        scanner.close();
+    }
+}
+END
+---------------------------------------------
+
+9)That counts the number of unique words in a given sentence
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class UniqueWordCount {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input string
+        String input = scanner.nextLine();
+
+        // Split the input string into words
+        String[] words = input.split(" ");
+
+        // Use HashSet to store unique words
+        Set<String> uniqueWords = new HashSet<>();
+
+        // Add words to the HashSet
+        for (String word : words) {
+            uniqueWords.add(word.toLowerCase()); // Convert to lowercase to count words case-insensitively
+        }
+
+        // Output the count of unique words
+        System.out.println(uniqueWords.size());
+
+        scanner.close();
+    }
+}
+END
+------------------------------
+10)the use of synchronized methods for thread-safe incrementing of a counter
+
+import java.util.Scanner;
+
+class Counter {
+    private int count = 0;
+
+    // Synchronized method to increment the counter
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+class CounterThread extends Thread {
+    private Counter counter;
+    private int increments;
+
+    public CounterThread(Counter counter, int increments) {
+        this.counter = counter;
+        this.increments = increments;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < increments; i++) {
+            counter.increment();
+        }
+    }
+}
+
+public class SynchronizedCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input number of threads and increments per thread
+        int T = scanner.nextInt();
+        int N = scanner.nextInt();
+
+        // Shared counter object
+        Counter counter = new Counter();
+
+        // Array to hold threads
+        Thread[] threads = new Thread[T];
+
+        // Create and start each thread
+        for (int i = 0; i < T; i++) {
+            threads[i] = new CounterThread(counter, N);
+            threads[i].start();
+        }
+
+        // Wait for all threads to finish
+        for (int i = 0; i < T; i++) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Output the final value of the counter
+        System.out.println("Final counter value: " + counter.getCount());
+
+        scanner.close();
+    }
+}
+END
